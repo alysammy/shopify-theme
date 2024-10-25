@@ -1,0 +1,985 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+.shm-video-section {
+    display: block;
+    background-color: #FFF;
+    position: relative;
+    {% if section.settings.full_width != true %}
+      padding: 0 50px;
+    {% endif %}
+}
+.shm-video-section .shm-body {
+    display: block;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    min-height: {{ section.settings.height_desktop }}px;
+    overflow: hidden;
+    {% if section.settings.placeholder_image != blank %}
+      background-image: url({{section.settings.placeholder_image | img_url: 'master' }});
+      background-repeat: no-repeat;
+      background-size: cover;
+    {% endif %}
+}
+.shm-video-section .shm-video-box {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.shm-video-section .shm-video-box video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.9);
+}
+.shm-video-section .shm-video-box iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.9);
+}
+/* Start Overlay */
+.shm-video-section .shm-overlay-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    {% if section.settings.overlay-position == "top-left" %}
+      justify-content: start !important;
+      align-items: start !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "top-center" %}
+      justify-content: center !important;
+      align-items: start !important;
+      text-align: center !important;
+    {% elsif section.settings.overlay-position == "top-right" %}
+      justify-content: right !important;
+      align-items: start !important;
+      text-align: right !important;
+    {% elsif section.settings.overlay-position == "middle-left" %}
+      justify-content: start !important;
+      align-items: center !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "middle-center" %}
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+    {% elsif section.settings.overlay-position == "middle-right" %}
+      justify-content: right !important;
+      align-items: center !important;
+      text-align: right !important;
+    {% elsif section.settings.overlay-position == "bottom-left" %}
+      justify-content: start !important;
+      align-items: end !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "bottom-center" %}
+      justify-content: center !important;
+      align-items: end !important;
+      text-align: center !important;
+    {% else %}
+      justify-content: right !important;
+      align-items: end !important;
+      text-align: right !important;
+    {% endif %}
+    {% if section.settings.overlay_style == "full" %}
+      background-color: #00000024;
+    {% elsif section.settings.overlay_style == "box" %}
+      background-color: #00000000;
+    {% else %}
+      background-color: #00000000;
+    {% endif %}
+}
+.shm-video-section .shm-overlay-wrapper-outside {
+    position: unset !important;
+    background-color: #fff;
+    display: none;
+}
+.shm-video-section .shm-overlay-wrapper-outside .shm-overlay-box {
+    color: black !important;
+}
+.shm-video-section .shm-overlay-wrapper-outside a.shm-btn {
+    border: 1px solid black;
+}
+.shm-video-section .shm-overlay-wrapper .shm-overlay-box {
+    display: block;
+    width: 100%;
+    padding: 70px;
+    color: white;
+    max-width: max-content;
+    {% if section.settings.overlay_style == "full" %}
+      background: #ffffff00;
+      color: white;
+    {% elsif section.settings.overlay_style == "box" %}
+      background: #ffffffdb;
+      color: black;
+    {% else %}
+      background: #ffffff00;
+      color: white;
+    {% endif %}
+}
+.shm-video-section .shm-overlay-wrapper .shm-section-heading {
+    display: block;
+    margin-bottom: 18px;
+    max-width: 600px;
+}
+.shm-video-section .shm-overlay-wrapper .shm-section-heading h2,
+.shm-video-section .shm-overlay-wrapper .shm-section-heading h1 {
+    display: block;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    color: inherit;
+}
+.shm-video-section .shm-overlay-wrapper .shm-detail-box {
+    display: block;
+}
+.shm-video-section .shm-overlay-wrapper .shm-detail-box .shm-detail {
+    display: block;
+    margin-bottom: 18px;
+}
+{% for block in section.blocks %}
+  {% if block.type == "text" %}
+    .shm-video-section .shm-overlay-wrapper .shm-detail-box-{{ forloop.index }} .shm-detail p {
+        display: block;
+        margin: 0;
+        line-height: normal;
+        font-size: {% if block.settings.enlarge_text == true %}20px{% else %}15px{% endif %};
+    }
+  {% endif %}
+{% endfor %}
+.shm-video-section .shm-overlay-wrapper .shm-subheading-box {
+    display: block;
+    margin-bottom: 27px;
+}
+.shm-video-section .shm-overlay-wrapper .shm-subheading-box span.shm-subheading {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.shm-video-section .shm-overlay-wrapper .shm-btn-wrapper {
+    display: block;
+    padding: 20px 0;
+}
+{% for block in section.blocks %}
+  {% if block.type == "button" %}
+    .shm-video-section .shm-overlay-wrapper .shm-btn-wrapper a.shm-btn-{{ forloop.index }} {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        width: 100%;
+        text-align: center;
+        {% if block.settings.button_style == "primary" %}
+          /* border: 2px solid #232323; */
+          background: #232323;
+          color: white;
+          text-decoration: none;
+          padding: 15px 25px;
+          max-width: max-content;
+        {% elsif block.settings.button_style == "secondary" %}
+          /* border: 2px solid #232323; */
+          background: #FFF;
+          color: #000;
+          text-decoration: none;
+          padding: 15px 25px;
+          max-width: max-content;
+        {% else %}
+          /* border: 2px solid transparent; */
+          background: transparent;
+          color: #232323;
+          text-decoration: underline;
+          padding: 0px;
+          max-width: max-content;
+        {% endif %}
+        transition: all 0.2s ease;
+        line-height: normal;
+    }
+  {% endif %}
+{% endfor %}
+.shm-video-section .shm-overlay-wrapper .shm-btn-wrapper a.shm-btn:last-child {
+    margin-right: 0;
+}
+{% for block in section.blocks %}
+  {% if block.type == "button" %}
+    .shm-video-section .shm-overlay-wrapper .shm-btn-wrapper a.shm-btn-{{ forloop.index }}:hover {
+      {% if block.settings.button_style == "primary" %}
+        background-color: #000;
+      {% elsif block.settings.button_style == "secondary" %}
+        background-color: #232323;
+        color: white;
+      {% else %}
+        background-color: transparent;
+      {% endif %}
+    }
+  {% endif %}
+{% endfor %}
+
+{% for block in section.blocks %}
+  {% if block.type == "image" %}
+    .shm-video-section .shm-overlay-wrapper .shm-imgbox-{{ forloop.index }} {
+        display: inline-block;
+        width: 100%;
+        max-width: {{ block.settings.image_width }}px;
+    }
+  {% endif %}
+{% endfor %}
+
+.shm-video-section .shm-overlay-wrapper .shm-imgbox img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+/* End Overlay */
+/* swiper slider */
+
+.swiper {
+  width: 240px;
+  height: 320px;
+}
+
+.swiper-slide {
+  display: block;
+  max-width: fit-content;
+  height: fit-content;
+  padding: 35px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  background-color: white;
+}
+.shm-video-section .custom-slider {
+    position: absolute;
+    padding: 0 60px;
+    right: 0;
+    bottom: 0;
+}
+.shm-video-section .custom-slider .image-box {
+    display: block;
+    width: 100%;
+    max-width: 160px;
+    margin: 0 auto 5px;
+}
+.shm-video-section .custom-slider .prd-title {
+    display: block;
+}
+.shm-video-section .custom-slider .prd-title h3 {
+    display: block;
+    font-size: 14px;
+    line-height: normal;
+    margin: 0;
+}
+.shm-video-section .custom-slider .prd-price-box {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+.shm-video-section .custom-slider .prd-price-box span {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+.shm-video-section .custom-slider .prd-price-box span.prd-compare-price {
+    text-decoration: line-through;
+    color: gray;
+}
+.shm-video-section .custom-slider .image-box img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+/* start mobile slider */
+.shm-video-section .custom-slider-mobile {
+    position: unset;
+    padding: 20px;
+}
+.shm-video-section .custom-slider-mobile .swiper {
+    display: block;
+    width: 100%;
+    height: fit-content;
+}
+.shm-video-section .custom-slider-mobile .swiper .swiper-slide {
+    /* width: unset !important; */
+    max-width: unset !important;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+    /* margin-right: 5px; */
+}
+.shm-video-section .custom-slider-mobile .swiper .swiper-slide .custom-slide-content {
+    display: flex;
+}
+.shm-video-section .custom-slider-mobile .swiper .swiper-slide .image-box {
+    max-width: 60px;
+    margin: 0;
+    margin-right: 5px;
+}
+.shm-video-section .custom-slider-mobile {
+    display: none;
+}
+
+.shm-video-section .custom-slider-desktop .swiper-button-next, 
+.shm-video-section .custom-slider-desktop .swiper-button-prev {
+    display: block !important;
+    width: 35px;
+    max-height: 35px;
+    background-color: #d3d3d39c;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+}
+.shm-video-section .custom-slider-desktop .swiper-button-prev {
+    left: auto !important;
+    transform: translate(-120%, -100%);
+}
+.shm-video-section .custom-slider-desktop .swiper-button-next:after, 
+.shm-video-section .custom-slider-desktop .swiper-button-prev:after {
+    font-size: 14px !important;
+    line-height: normal !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: black;
+}
+.shm-video-section .custom-slider-desktop .swiper-button-next:hover, 
+.shm-video-section .custom-slider-desktop .swiper-button-prev:hover {
+    background-color: #d3d3d3;
+}
+/* end mobile slider */
+/* end swiper slider */
+@media screen and (min-width: 1920px){
+  .shm-video-section .shm-body {
+      max-width: unset !important;
+  }
+  .shm-video-section .shm-video-box video {
+      transform: scale(3.4);
+  }
+}
+@media screen and (max-width: 1440px) {
+  .shm-video-section .shm-video-box video,
+  .shm-video-section .shm-video-box iframe{
+      transform: scale(1.5);
+  }
+}
+{% if section.settings.height_desktop >= 700 %}
+  @media screen and (max-width: 1201px) {
+    .shm-video-section .shm-video-box video,
+    .shm-video-section .shm-video-box iframe {
+      transform: scale(2.5);
+    }
+  }
+{% endif %}
+@media screen and (max-width: 1024px) {
+  .shm-video-section .shm-overlay-wrapper .shm-section-heading h2,
+  .shm-video-section .shm-overlay-wrapper .shm-section-heading h1 {
+      font-size: 58px;
+  }
+  .shm-video-section {
+    {% if section.settings.full_width != true %}
+      padding: 0 30px;
+    {% endif %}
+  }
+}
+@media screen and (max-width: 768px) {
+  .shm-video-section .shm-body {
+      min-height: {{ section.settings.height_mobile }}px;
+  }
+  .shm-video-section .shm-video-box video {
+      {% if section.settings.height_mobile >= 700 %}
+        transform: scale(5.8);
+      {% else %}
+        transform: scale(2.8);
+      {% endif %}
+  }
+  .shm-video-section .shm-overlay-wrapper .shm-section-heading h2,
+  .shm-video-section .shm-overlay-wrapper .shm-section-heading h1 {
+      font-size: 32px;
+  }
+  .shm-video-section .shm-overlay-wrapper .shm-detail-box-3 .shm-detail p {
+      font-size: 18px;
+  }
+  .shm-video-section .shm-overlay-wrapper .shm-overlay-box {
+      padding: 50px;
+  }
+  .shm-video-section {
+      {% if section.settings.full_width != true %}
+        padding: 0 16px;
+      {% endif %}
+  }
+  .shm-video-section .shm-overlay-wrapper-outside {
+      {% if section.settings.mobile-overlay-under == true %}
+        display: block;
+      {% else %}
+        display: none;
+      {% endif %}
+  }
+  .shm-video-section .shm-overlay-wrapper-inner {
+      {% if section.settings.mobile-overlay-under == true %}
+        display: none;
+      {% else %}
+        display: block;
+      {% endif %}
+  }
+  .shm-video-section .custom-slider-desktop {
+      display: none;
+  }
+  .shm-video-section .custom-slider-mobile {
+      display: block;
+  }
+}
+@media (max-width: 560px) {
+  .shm-video-section .shm-overlay-wrapper .shm-overlay-box {
+      padding: 20px;
+  }
+  .shm-video-section .shm-video-box iframe {
+      {% if section.settings.height_mobile >= 700 %}
+        transform: scale(5.8);
+      {% else %}
+        transform: scale(2.8);
+      {% endif %}
+  }
+  .shm-video-section .shm-video-box video {
+      {% if section.settings.height_mobile >= 700 %}
+        transform: scale(5.8);
+      {% else %}
+        transform: scale(3.3);
+      {% endif %}
+  }
+  .shm-video-section .custom-slider-mobile {
+      padding: 20px;
+  }
+}
+</style>
+<div class="shm-video-section">
+  <!-- Start Video Content -->
+  <div class="shm-overlay-wrapper shm-overlay-wrapper-outside">
+    <div class="shm-overlay-box">
+      {% assign button_open = false %}
+      {% for block in section.blocks %}
+        <!-- start heading -->
+          {% if block.type == "heading" %}
+              <div class="shm-section-heading shm-section-heading-{{ forloop.index }}">
+                  {% if block.settings.primary-heading != blank %}
+                    {% if block.settings.heading != blank %}
+                      <h1>{{ block.settings.heading }}</h1>
+                    {% endif %}
+                  {% else %}
+                    {% if block.settings.heading != blank %}
+                      <h2>{{ block.settings.heading }}</h2>
+                    {% endif %}
+                  {% endif %}
+              </div>
+        <!-- start subheading -->
+          {% elsif block.type == "subheading" %}
+              {% if block.settings.subheading != blank %}
+                <div class="shm-subheading-box shm-subheading-box-{{ forloop.index }}">
+                    <span class="shm-subheading">{{ block.settings.subheading }}</span>
+                </div>
+              {% endif %}
+        <!-- start text -->
+          {% elsif block.type == "text" %}
+              {% if block.settings.detail != blank %}
+                <div class="shm-detail-box shm-detail-box-{{ forloop.index }}">
+                    <div class="shm-detail">
+                        <p>{{ block.settings.detail }}</p>
+                    </div>
+                </div>
+              {% endif %}
+        <!-- start button -->
+          {% elsif block.type == "button" %}
+              {% if button_open == false %}
+                  <div class="shm-btn-wrapper shm-btn-wrapper-{{ forloop.index }}">
+                  {% assign button_open = true %}
+              {% endif %}
+              {% if block.settings.btn != blank %}
+                <a href="{{ block.settings.btn-link }}" class="shm-btn shm-btn-{{ forloop.index }}">{{ block.settings.btn }}</a>
+              {% endif %}
+          {% else %}
+              {% if button_open == true %}
+                  </div> <!-- Close .shm-btn-wrapper -->
+                  {% assign button_open = false %}
+              {% endif %}
+            <!-- start image -->
+              {% if block.type == "image" %}
+                  <div class="shm-imgbox shm-imgbox-{{ forloop.index }}">
+                      {% if block.settings.shm-image-link != blank %}
+                        {% if block.settings.shm-image != blank %}
+                          <a href="{{ block.settings.shm-image-link }}">
+                            <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                          </a>
+                        {% endif %}
+                      {% else %}
+                        {% if block.settings.shm-image != blank %}
+                          <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                        {% endif %}
+                      {% endif %}
+                  </div>
+              {% endif %}
+          {% endif %}
+      {% endfor %}
+      {% if button_open == true %}
+          </div> <!-- Close .shm-btn-wrapper at the end if open -->
+      {% endif %}
+    </div>
+  </div>
+  <!-- End Video Content -->
+  <div class="shm-body">
+      <div class="shm-video-box">
+        <!-- start videos -->
+        {% if section.settings.video-url %}
+          {{ section.settings.video-url | video_tag: playsinline: true, autoplay: true, muted: true, loop: true }}
+        {% else %}
+          <iframe 
+            width="560" 
+            height="315" 
+            src="{{ section.settings.video_external | replace: 'watch?v=', 'embed/' }}?controls=0&autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_external | replace: 'https://www.youtube.com/watch?v=', '' }}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        {% endif %}
+        <!-- End videos -->
+        <!-- Start Video Content -->
+        <div class="shm-overlay-wrapper shm-overlay-wrapper-inner">
+          <div class="shm-overlay-box">
+            {% assign button_open = false %}
+            {% for block in section.blocks %}
+              <!-- start heading -->
+                {% if block.type == "heading" %}
+                    <div class="shm-section-heading shm-section-heading-{{ forloop.index }}">
+                        {% if block.settings.primary-heading != blank %}
+                          {% if block.settings.heading != blank %}
+                            <h1>{{ block.settings.heading }}</h1>
+                          {% endif %}
+                        {% else %}
+                          {% if block.settings.heading != blank %}
+                            <h2>{{ block.settings.heading }}</h2>
+                          {% endif %}
+                        {% endif %}
+                    </div>
+              <!-- start subheading -->
+                {% elsif block.type == "subheading" %}
+                    {% if block.settings.subheading != blank %}
+                      <div class="shm-subheading-box shm-subheading-box-{{ forloop.index }}">
+                          <span class="shm-subheading">{{ block.settings.subheading }}</span>
+                      </div>
+                    {% endif %}
+              <!-- start text -->
+                {% elsif block.type == "text" %}
+                    {% if block.settings.detail != blank %}
+                      <div class="shm-detail-box shm-detail-box-{{ forloop.index }}">
+                          <div class="shm-detail">
+                              <p>{{ block.settings.detail }}</p>
+                          </div>
+                      </div>
+                    {% endif %}
+              <!-- start button -->
+                {% elsif block.type == "button" %}
+                    {% if button_open == false %}
+                        <div class="shm-btn-wrapper shm-btn-wrapper-{{ forloop.index }}">
+                        {% assign button_open = true %}
+                    {% endif %}
+                    {% if block.settings.btn != blank %}
+                      <a href="{{ block.settings.btn-link }}" class="shm-btn shm-btn-{{ forloop.index }}">{{ block.settings.btn }}</a>
+                    {% endif %}
+                {% else %}
+                    {% if button_open == true %}
+                        </div> <!-- Close .shm-btn-wrapper -->
+                        {% assign button_open = false %}
+                    {% endif %}
+                  <!-- start image -->
+                    {% if block.type == "image" %}
+                        <div class="shm-imgbox shm-imgbox-{{ forloop.index }}">
+                            {% if block.settings.shm-image-link != blank %}
+                              {% if block.settings.shm-image != blank %}
+                                <a href="{{ block.settings.shm-image-link }}">
+                                  <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                                </a>
+                              {% endif %}
+                            {% else %}
+                              {% if block.settings.shm-image != blank %}
+                                <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                              {% endif %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% if button_open == true %}
+                </div> <!-- Close .shm-btn-wrapper at the end if open -->
+            {% endif %}
+          </div>
+        </div>
+        <!-- End Video Content -->
+      </div>
+      <!-- start swiper slider -->
+      <div class="custom-slider custom-slider-desktop">
+        <div class="custom-slider-content">
+          
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              
+              {% assign collection_data = section.settings.collection %}
+              {% for product in collections[collection_data].products %}
+                <div class="swiper-slide">
+                  <div class="custom-slide-content">
+                    {% if product.featured_image != blank %}
+                    <div class="image-box">
+                      <a href="{{ product.url }}">
+                        <img src="{{ product.featured_image | img_url: "master" }}" >
+                      </a>
+                    </div>
+                    {% endif %}
+                    {% if product.title != blank %}
+                    <div class="prd-title">
+                      <h3>{{ product.title }}</h3>
+                    </div>
+                    {% endif %}
+                    <div class="prd-price-box">
+                      {% if product.price != blank %}
+                        <span class="prd-actuall-price">{{ product.price | money }}</span>
+                      {% endif %}
+                      {% if product.compare_at_price != blank %}
+                        <span class="prd-compare-price">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- end swiper slider -->
+  </div>
+  <!-- start swiper slider -->
+  <div class="custom-slider custom-slider-mobile">
+    <div class="custom-slider-content">
+      
+      <div class="swiper mySwiper-mobile">
+        <div class="swiper-wrapper">
+          
+          {% assign collection_data = section.settings.collection %}
+          {% for product in collections[collection_data].products %}
+            <div class="swiper-slide">
+              <div class="custom-slide-content">
+                {% if product.featured_image != blank %}
+                <div class="image-box">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: "master" }}" >
+                  </a>
+                </div>
+                {% endif %}
+                <div class="prd-content">
+                  {% if product.title != blank %}
+                  <div class="prd-title">
+                    <h3>{{ product.title }}</h3>
+                  </div>
+                  {% endif %}
+                  <div class="prd-price-box">
+                    {% if product.price != blank %}
+                      <span class="prd-actuall-price">{{ product.price | money }}</span>
+                    {% endif %}
+                    {% if product.compare_at_price != blank %}
+                      <span class="prd-compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- end swiper slider -->
+</div>
+{% schema %}
+{
+  "name": "SHM Background Video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video-url",
+      "label": "Video upload",
+      "info": "Hosted by Shopify. Replaces External video if both are set."
+    },
+    {
+      "type": "text",
+      "id": "video_external",
+      "label": "External video",
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "info": "Supports YouTube and Vimeo. Landscape videos with a 16:9 aspect ratio recommended."
+    },
+    {
+      "type": "image_picker",
+      "id": "placeholder_image",
+      "label": "Custom placeholder image",
+      "info": "Shows while the video is loading, or if it cannot autoplay."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top Left"
+          },
+          {
+            "value": "top-center",
+            "label": "Top Center"
+          },
+          {
+            "value": "top-right",
+            "label": "Top Right"
+          },
+          {
+            "value": "middle-left",
+            "label": "Middle Left"
+          },
+          {
+            "value": "middle-center",
+            "label": "Middle Center"
+          },
+          {
+            "value": "middle-right",
+            "label": "Middle Right"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom Left"
+          },
+          {
+            "value": "bottom-center",
+            "label": "Bottom Center"
+          },
+          {
+            "value": "bottom-right",
+            "label": "Bottom Right"
+          }
+        ],
+        "id": "overlay-position",
+        "label": "Text overlay position",
+        "default": "middle-center"
+      },
+      {
+        "type": "range",
+        "id": "height_desktop",
+        "min": 200,
+        "max": 1000,
+        "step": 20,
+        "unit": "px",
+        "label": "Desktop fixed height",
+        "default": 580
+      },
+      {
+        "type": "range",
+        "id": "height_mobile",
+        "min": 100,
+        "max": 1000,
+        "step": 20,
+        "unit": "px",
+        "label": "Mobile fixed height",
+        "default": 480
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full page width",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile-overlay-under",
+        "label": "Show text below image on mobile",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "overlay_style",
+        "label": "Overlay style",
+        "default": "full",
+        "options": [
+          {
+            "value": "full",
+            "label": "Tint"
+          },
+          {
+            "value": "box",
+            "label": "Box"
+          },
+          {
+            "value": "no_background",
+            "label": "No background"
+          }
+        ]
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Select Collection"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "checkbox",
+          "id": "primary-heading",
+          "label": "Set as primary page heading",
+          "info": "Use <h1> tag. One per page recommended."
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Sub Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "detail",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "enlarge_text",
+          "label": "Enlarge text",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Consecutive buttons will show on the same row"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "label": "Button"
+        },
+        {
+          "type": "url",
+          "id": "btn-link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "default": "primary",
+          "options": [
+            {
+              "label": "Primary",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "secondary"
+            },
+            {
+              "label": "Link",
+              "value": "link"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "shm-image",
+          "label": "Select Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 1000,
+          "step": 10,
+          "unit": "px",
+          "label": "Image width",
+          "default": 240
+        },
+        {
+          "type": "url",
+          "id": "shm-image-link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SHM Background Video"
+    }
+  ]
+}
+{% endschema %}
+<script>
+// start swiper slider
+  var swiper = new Swiper(".mySwiper", {
+    effect: "cards",
+    grabCursor: true,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  var swiper = new Swiper(".mySwiper-mobile", {
+    grabCursor: true,
+    slidesPerView: 1, // Default screen par 1 slide show hogi
+    slidesPerGroup: 1,
+    spaceBetween: 5,
+    breakpoints: {
+      520: {
+        slidesPerView: 2, // Jab screen width 520px ya us se zyada ho tab 2 slides dikhengi
+      },
+    },
+  });
+// end swiper slider
+</script>
