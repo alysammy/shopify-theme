@@ -1,0 +1,652 @@
+<style>
+section.shm-image-with-text-{{ section.id }} {
+    display: block;
+    {% if section.settings.color_scheme == 'default' %}
+    background-color: white;
+    padding: 0 40px;
+    {% elsif section.settings.color_scheme == '1' %}
+    background-color: #fcfaf3;
+    padding: 80px 40px;
+    {% else %}
+    background-color: #faf2e6;
+    padding: 80px 40px;
+    {% endif %}
+}
+section.shm-image-with-text-{{ section.id }} .container {
+    display: block;
+    width: 100%;
+    max-width: 1510px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+section.shm-image-with-text-{{ section.id }} .container .body {
+    display: block;
+}
+section.shm-image-with-text-{{ section.id }} .content {
+    display: flex;
+    {% if section.settings.image_position == "left"%}
+      flex-direction: row;
+    {% else %}
+      flex-direction: row-reverse;
+    {% endif %}
+    align-items: center;
+}
+section.shm-image-with-text-{{ section.id }} .left,
+section.shm-image-with-text-{{ section.id }} .right {
+    display: block;
+    width: 100%;
+    max-width: 50%;
+    padding: 0 5px;
+}
+section.shm-image-with-text-{{ section.id }} .right {
+    text-align: {{ section.settings.text_alignment }};
+    {% if section.settings.image_position == "left"%}
+      padding-left: 45px;
+    {% else %}
+      padding-right: 45px;
+    {% endif %}
+}
+section.shm-image-with-text-{{ section.id }} .right .right-content {
+    display: block;
+    width: 100%;
+    max-width: 465px;
+    margin: 0 auto;
+}
+section.shm-image-with-text-{{ section.id }} .left .video-box {
+    display: block;
+    width: 100%;
+    max-width: {{ section.settings.image_width }}px;
+    margin: 0 0 0 auto;
+}
+section.shm-image-with-text-{{ section.id }} .left .video-box video {
+    display: block;
+    width: 100%;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box {
+    display: block;
+    width: 100%;
+    max-width: {{ section.settings.image_width }}px;
+    margin: 0 0 0 auto;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box a {
+    display: block;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* start image with video */
+{% if section.settings.video_link_2 != blank %}
+section.shm-image-with-text-{{ section.id }} .left {
+    display: flex;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box,
+section.shm-image-with-text-{{ section.id }} .left video {
+    max-width: 50%;
+    margin: 0;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box {
+    margin-inline-end: -45px;
+    transform: translate(-45px);
+}
+section.shm-image-with-text-{{ section.id }} .left video {
+    margin-top: 45px;
+    position: relative;
+    z-index: 1;
+}
+{% endif %}
+/* end image with video */
+
+/* start image with image */
+{% if section.settings.main-image-2 != blank %}
+section.shm-image-with-text-{{ section.id }} .left {
+    display: flex;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box,
+section.shm-image-with-text-{{ section.id }} .left .image-box-both {
+    max-width: 50%;
+    margin: 0;
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box {
+    margin-inline-end: -45px;
+    transform: translate(-45px);
+}
+section.shm-image-with-text-{{ section.id }} .left .image-box-both {
+    margin-top: 45px;
+    position: relative;
+    z-index: 1;
+}
+{% endif %}
+/* end image with image */
+
+/* start richtext */
+section.shm-image-with-text-{{ section.id }} .shm-section-heading {
+    display: block;
+    margin-bottom: 18px;
+}
+section.shm-image-with-text-{{ section.id }} .shm-section-heading h2,
+section.shm-image-with-text-{{ section.id }} .shm-section-heading h1 {
+    display: block;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+}
+section.shm-image-with-text-{{ section.id }} .shm-detail-box {
+    display: block;
+}
+section.shm-image-with-text-{{ section.id }} .shm-detail-box .shm-detail {
+    display: block;
+}
+{% for block in section.blocks %}
+  {% if block.type == "text" %}
+    section.shm-image-with-text-{{ section.id }} .shm-detail-box-{{ forloop.index }} .shm-detail p {
+        display: block;
+        margin: 0;
+        line-height: normal;
+        font-size: {% if block.settings.enlarge_text == true %}20px{% else %}15px{% endif %};
+    }
+  {% endif %}
+{% endfor %}
+section.shm-image-with-text-{{ section.id }} .shm-subheading-box {
+    display: block;
+    padding: 30px 0;
+}
+section.shm-image-with-text-{{ section.id }} .shm-subheading-box span.shm-subheading {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+section.shm-image-with-text-{{ section.id }} .shm-btn-wrapper {
+    display: block;
+    padding: 20px 0;
+}
+{% for block in section.blocks %}
+  {% if block.type == "button" %}
+    section.shm-image-with-text-{{ section.id }} .shm-btn-wrapper a.shm-btn-{{ forloop.index }} {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        width: 100%;
+        text-align: center;
+        {% if block.settings.button_style == "primary" %}
+          border: 2px solid #232323;
+          background: #232323;
+          color: white;
+          text-decoration: none;
+          padding: 11px;
+          max-width: 150px;
+        {% elsif block.settings.button_style == "secondary" %}
+          border: 2px solid #232323;
+          background: #FFF;
+          color: #000;
+          text-decoration: none;
+          padding: 11px;
+          max-width: 150px;
+        {% else %}
+          border: 2px solid transparent;
+          background: transparent;
+          color: #232323;
+          text-decoration: underline;
+          padding: 0px;
+          max-width: fit-content;
+        {% endif %}
+        transition: all 0.2s ease;
+        line-height: normal;
+        /* border-radius: 4px; */
+    }
+  {% endif %}
+{% endfor %}
+section.shm-image-with-text-{{ section.id }} .shm-btn-wrapper a.shm-btn:last-child {
+    margin-right: 0;
+}
+{% for block in section.blocks %}
+  {% if block.type == "button" %}
+    section.shm-image-with-text-{{ section.id }} .shm-btn-wrapper a.shm-btn-{{ forloop.index }}:hover {
+      {% if block.settings.button_style == "primary" %}
+        background-color: #000;
+      {% elsif block.settings.button_style == "secondary" %}
+        background-color: #232323;
+        color: white;
+      {% else %}
+        background-color: transparent;
+      {% endif %}
+    }
+  {% endif %}
+{% endfor %}
+
+{% for block in section.blocks %}
+  {% if block.type == "image" %}
+    section.shm-image-with-text-{{ section.id }} .shm-imgbox-{{ forloop.index }} {
+        display: inline-block;
+        width: 100%;
+        max-width: {{ block.settings.image_width }}px;
+    }
+  {% endif %}
+{% endfor %}
+
+section.shm-image-with-text-{{ section.id }} .shm-imgbox img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+@media screen and (max-width: 768px) {
+  section.shm-image-with-text-{{ section.id }} {
+      display: block;
+      {% if section.settings.color_scheme == 'default' %}
+      background-color: white;
+      padding: 0 5px;
+      {% elsif section.settings.color_scheme == '1' %}
+      background-color: #fcfaf3;
+      padding: 60px 5px;
+      {% else %}
+      background-color: #faf2e6;
+      padding: 60px 5px;
+      {% endif %}
+  }
+  section.shm-image-with-text-{{ section.id }} .left .image-box {
+      max-width: unset;
+  }
+  section.shm-image-with-text-{{ section.id }} .content {
+      flex-direction: column;
+  }
+  section.shm-image-with-text-{{ section.id }} .left, 
+  section.shm-image-with-text-{{ section.id }} .right {
+      max-width: unset;
+  }
+  section.shm-image-with-text-{{ section.id }} .right {
+      text-align: start;
+      {% if section.settings.image_position == "left"%}
+        padding-left: 5px;
+      {% else %}
+        padding-right: 5px;
+      {% endif %}
+  }
+  section.shm-image-with-text-{{ section.id }} .right .right-content {
+      max-width: unset;
+  }
+  section.shm-image-with-text-{{ section.id }} .shm-container .shm-body {
+      padding: 0 10px;
+  }
+  section.shm-image-with-text-{{ section.id }} .shm-section-heading h2, 
+  section.shm-image-with-text-{{ section.id }} .shm-section-heading h1 {
+      display: block;
+      font-size: 27px;
+      line-height: normal;
+      margin: 0;
+  }
+  section.shm-image-with-text-{{ section.id }} .shm-detail-box-2 .shm-detail p {
+      font-size: 18px;
+  }
+  section.shm-image-with-text-{{ section.id }} .left .video-box {
+      max-width: unset;
+  }
+}
+/* end richtext */
+</style>
+<section class="shm-image-with-text-{{ section.id }}">
+    <div class="container">
+        <div class="body">
+            <div class="content">
+                <div class="left">
+                  {% if section.settings.video_link != blank %}
+                    <div class="video-box">
+                    {% if section.settings.image_link != blank %}
+                      <a href="{{ section.settings.image_link }}">
+                        <video playsinline="true" autoplay="autoplay" muted="muted" loop="loop" preload="metadata" aria-label="Content for BEATNIK Premium Shopify theme by Clean Canvas">
+                          <source src="{{ section.settings.video_link }}" type="video/mp4">
+                          <img loading="lazy" hidden="" alt="Content for BEATNIK Premium Shopify theme by Clean Canvas" src="//beatnik-5.myshopify.com/cdn/shop/files/preview_images/cefa51206da34eab8a9fdb248b940b3d.thumbnail.0000000_small.jpg?v=1653619606">
+                        </video>
+                      </a>
+                    {% else %}
+                        <video playsinline="true" autoplay="autoplay" muted="muted" loop="loop" preload="metadata" aria-label="Content for BEATNIK Premium Shopify theme by Clean Canvas">
+                          <source src="{{ section.settings.video_link }}" type="video/mp4">
+                          <img loading="lazy" hidden="" alt="Content for BEATNIK Premium Shopify theme by Clean Canvas" src="//beatnik-5.myshopify.com/cdn/shop/files/preview_images/cefa51206da34eab8a9fdb248b940b3d.thumbnail.0000000_small.jpg?v=1653619606">
+                        </video>
+                    {% endif %}
+                    </div>
+                  {% else %}
+                  {% if section.settings.main-image != blank %}
+{% if section.settings.video_link_2 != blank %}
+    {% if section.settings.image_link != blank %}
+      <a href="{{ section.settings.image_link }}">
+        <video playsinline="true" autoplay="autoplay" muted="muted" loop="loop" preload="metadata" aria-label="Content for BEATNIK Premium Shopify theme by Clean Canvas">
+          <source src="{{ section.settings.video_link_2 }}" type="video/mp4">
+          <img loading="lazy" hidden="" alt="Content for BEATNIK Premium Shopify theme by Clean Canvas" src="//beatnik-5.myshopify.com/cdn/shop/files/preview_images/cefa51206da34eab8a9fdb248b940b3d.thumbnail.0000000_small.jpg?v=1653619606">
+        </video>
+      </a>
+    {% else %}
+        <video playsinline="true" autoplay="autoplay" muted="muted" loop="loop" preload="metadata" aria-label="Content for BEATNIK Premium Shopify theme by Clean Canvas">
+          <source src="{{ section.settings.video_link_2 }}" type="video/mp4">
+          <img loading="lazy" hidden="" alt="Content for BEATNIK Premium Shopify theme by Clean Canvas" src="//beatnik-5.myshopify.com/cdn/shop/files/preview_images/cefa51206da34eab8a9fdb248b940b3d.thumbnail.0000000_small.jpg?v=1653619606">
+        </video>
+    {% endif %}
+    <div class="image-box">
+        {% if section.settings.image_link != blank %}
+          <a href="{{ section.settings.image_link }}">
+              <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+          </a>
+        {% else %}
+          <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+        {% endif %}
+    </div>
+{% else %}
+    {% if section.settings.main-image-2 != blank %}
+    <div class="image-box image-box-both">
+        {% if section.settings.image_link != blank %}
+          <a href="{{ section.settings.image_link }}">
+              <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+          </a>
+        {% else %}
+          <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+        {% endif %}
+    </div>
+    <div class="image-box">
+        {% if section.settings.image_link != blank %}
+          <a href="{{ section.settings.image_link }}">
+              <img src="{{ section.settings.main-image-2 | img_url: 'master' }}" alt="">
+          </a>
+        {% else %}
+          <img src="{{ section.settings.main-image-2 | img_url: 'master' }}" alt="">
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="image-box">
+        {% if section.settings.image_link != blank %}
+          <a href="{{ section.settings.image_link }}">
+              <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+          </a>
+        {% else %}
+          <img src="{{ section.settings.main-image | img_url: 'master' }}" alt="">
+        {% endif %}
+    </div>
+    {% endif %}
+  {% endif %}
+{% endif %}
+                  {% endif %}
+                </div>
+                <div class="right">
+                  <div class="right-content">
+                    <div class="shm-richtext-box">
+                        {% assign button_open = false %}
+                        {% for block in section.blocks %}
+                          <!-- start heading -->
+                            {% if block.type == "heading" %}
+                                <div class="shm-section-heading shm-section-heading-{{ forloop.index }}">
+                                    {% if block.settings.primary-heading != blank %}
+                                      {% if block.settings.heading != blank %}
+                                        <h1>{{ block.settings.heading }}</h1>
+                                      {% endif %}
+                                    {% else %}
+                                      {% if block.settings.heading != blank %}
+                                        <h2>{{ block.settings.heading }}</h2>
+                                      {% endif %}
+                                    {% endif %}
+                                </div>
+                          <!-- start subheading -->
+                            {% elsif block.type == "subheading" %}
+                                {% if block.settings.subheading != blank %}
+                                  <div class="shm-subheading-box shm-subheading-box-{{ forloop.index }}">
+                                      <span class="shm-subheading">{{ block.settings.subheading }}</span>
+                                  </div>
+                                {% endif %}
+                          <!-- start text -->
+                            {% elsif block.type == "text" %}
+                                {% if block.settings.detail != blank %}
+                                  <div class="shm-detail-box shm-detail-box-{{ forloop.index }}">
+                                      <div class="shm-detail">
+                                          <p>{{ block.settings.detail }}</p>
+                                      </div>
+                                  </div>
+                                {% endif %}
+                          <!-- start button -->
+                            {% elsif block.type == "button" %}
+                                {% if button_open == false %}
+                                    <div class="shm-btn-wrapper shm-btn-wrapper-{{ forloop.index }}">
+                                    {% assign button_open = true %}
+                                {% endif %}
+                                {% if block.settings.btn != blank %}
+                                  <a href="{{ block.settings.btn-link }}" class="shm-btn shm-btn-{{ forloop.index }}">{{ block.settings.btn }}</a>
+                                {% endif %}
+                            {% else %}
+                                {% if button_open == true %}
+                                    </div> <!-- Close .shm-btn-wrapper -->
+                                    {% assign button_open = false %}
+                                {% endif %}
+                              <!-- start image -->
+                                {% if block.type == "image" %}
+                                    <div class="shm-imgbox shm-imgbox-{{ forloop.index }}">
+                                        {% if block.settings.shm-image-link != blank %}
+                                          {% if block.settings.shm-image != blank %}
+                                            <a href="{{ block.settings.shm-image-link }}">
+                                              <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                                            </a>
+                                          {% endif %}
+                                        {% else %}
+                                          {% if block.settings.shm-image != blank %}
+                                            <img src="{{ block.settings.shm-image | img_url: "master" }}" alt="">
+                                          {% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if button_open == true %}
+                            </div> <!-- Close .shm-btn-wrapper at the end if open -->
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "SHM Image With Text 2",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main-image",
+      "label": "Select_2 Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main-image-2",
+      "label": "Select_2 Image",
+      "info": "If you want both images to be displayed, add another image here."
+    },
+    {
+      "type": "text",
+      "id": "video_link_2",
+      "label": "Video Url With Image",
+      "info": "If you want both the video and image to be displayed together, add the video URL here."
+    },
+    {
+      "type": "text",
+      "id": "video_link",
+      "label": "Video Url"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Image/Video link"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 150,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "label": "Image width",
+      "default": 700
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "default",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "checkbox",
+          "id": "primary-heading",
+          "label": "Set as primary page heading",
+          "info": "Use <h1> tag. One per page recommended."
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Sub Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "detail",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "enlarge_text",
+          "label": "Enlarge text",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Consecutive buttons will show on the same row"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "label": "Button"
+        },
+        {
+          "type": "url",
+          "id": "btn-link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "default": "primary",
+          "options": [
+            {
+              "label": "Primary",
+              "value": "primary"
+            },
+            {
+              "label": "Secondary",
+              "value": "secondary"
+            },
+            {
+              "label": "Link",
+              "value": "link"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "shm-image",
+          "label": "Select Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 1000,
+          "step": 10,
+          "unit": "px",
+          "label": "Image width",
+          "default": 240
+        },
+        {
+          "type": "url",
+          "id": "shm-image-link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SHM Image With Text 2",
+      "category": "Section Category"
+    }
+  ]
+}
+{% endschema %}
