@@ -1,0 +1,228 @@
+<style>
+section.shm-four-stripe {
+    display: block;
+    padding: 20px 0;
+}
+section.shm-four-stripe .shm-container {
+    display: block;
+    width: 100%;
+    max-width: 1510px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+section.shm-four-stripe .shm-container .shm-body {
+    display: block;
+}
+section.shm-four-stripe .shm-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+section.shm-four-stripe .shm-stripe-box {
+    display: block;
+    width: 100%;
+    max-width: 25%;
+    padding: 0 5px;
+    text-decoration: none;
+    color: inherit;
+}
+section.shm-four-stripe .shm-stripe-box .shm-stripe-box-content {
+    display: block;
+}
+section.shm-four-stripe .shm-stripe-box .shm-img-box {
+    display: block;
+    width: 100%;
+    max-width: 25px;
+    max-height: 25px;
+    margin: 0 auto 5px;
+}
+section.shm-four-stripe .shm-stripe-box .shm-img-box img {
+    display: block;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+section.shm-four-stripe .shm-stripe-box span {
+    display: block;
+    text-align: center;
+    line-height: normal;
+    font-size: 18px;
+}
+/* start for image block */
+  section.shm-four-stripe .shm-stripe-box .shm-stripe-box-content-2 {
+      display: block;
+      width: 100%;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 {
+      display: block;
+      position: relative;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 img {
+      display: block;
+      width: 100%;
+      object-fit: contain;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 .shm-image-caption-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      gap: 5px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: #0000002b;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 .shm-image-caption-content span:first-child {
+      display: block;
+      font-size: 18px;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 .shm-image-caption-content span:last-child {
+      display: block;
+      font-size: 15px;
+  }
+/* End for image block */
+@media screen and (max-width: 768px) {
+  section.shm-four-stripe .shm-stripe-box {
+      max-width: 50%;
+      padding: 10px;
+  }
+  section.shm-four-stripe .shm-stripe-box span {
+      font-size: 16px;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 .shm-image-caption-content span:first-child {
+      font-size: 16px;
+  }
+  section.shm-four-stripe .shm-stripe-box .shm-img-box-2 .shm-image-caption-content span:last-child {
+      font-size: 14px;
+  }
+}
+</style>
+<section class="shm-four-stripe">
+    <div class="shm-container">
+        <div class="shm-body">
+            <div class="shm-content">
+                {% for block in section.blocks %}
+                  <!-- Start Icon -->
+                  {% if block.type == "icon" %}
+                    <{% if block.settings.icon-link %}a href="{{ block.settings.icon-link }}"{% else %}div{% endif %} class="shm-stripe-box">
+                        <div class="shm-stripe-box-content">
+                            <div class="shm-img-box">
+                                {% if block.settings.icon-image != blank %}
+                                  <img src="{{ block.settings.icon-image | img_url: 'master' }}" alt="">
+                                {% else %}
+                                  <img src="https://cdn.icon-icons.com/icons2/2570/PNG/512/image_icon_153794.png" alt="">
+                                {% endif %}
+                            </div>
+                            {% if block.settings.caption-text != blank %}
+                              <span>{{ block.settings.caption-text }}</span>
+                            {% endif %}
+                        </div>
+                    </{% if block.settings.icon-link %}a{% else %}div{% endif %}>
+                  {% else %}
+                    <!-- Start Image -->
+                    <{% if block.settings.icon-link-image %}a href="{{ block.settings.icon-link-image }}"{% else %}div{% endif %} class="shm-stripe-box">
+                        <div class="shm-stripe-box-content-2">
+                            <div class="shm-img-box-2">
+                                {% if block.settings.blk-image != blank %}
+                                  <img src="{{ block.settings.blk-image | img_url: 'master' }}" alt="">
+                                {% endif %}
+                                <div class="shm-image-caption-content">
+                                  {% if block.settings.caption-text != blank %}
+                                    <span>{{ block.settings.caption-text }}</span>
+                                  {% endif %}
+                                  {% if block.settings.caption-text-2 != blank %}
+                                    <span>{{ block.settings.caption-text-2 }}</span>
+                                  {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </{% if block.settings.icon-link-image %}a{% else %}div{% endif %}>
+                  {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "SHM Cross-Page Promos",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon-image",
+          "label": "Select Icon"
+        },
+        {
+          "type": "text",
+          "id": "caption-text",
+          "label": "Caption",
+          "default": "Caption Text"
+        },
+        {
+          "type": "url",
+          "id": "icon-link",
+          "label": "Icon Link"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "blk-image",
+          "label": "Select Image"
+        },
+        {
+          "type": "text",
+          "id": "caption-text",
+          "label": "Caption",
+          "default": "Caption Text"
+        },
+        {
+          "type": "text",
+          "id": "caption-text-2",
+          "label": "Caption line 2"
+        },
+        {
+          "type": "url",
+          "id": "icon-link-image",
+          "label": "Icon Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SHM Cross-Page Promos",
+      "category": "Section Category",
+      "blocks": [
+        {
+          "type": "icon"
+        },
+        {
+          "type": "icon"
+        },
+        {
+          "type": "icon"
+        },
+        {
+          "type": "icon"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}
