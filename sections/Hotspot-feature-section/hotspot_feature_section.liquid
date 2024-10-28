@@ -1,0 +1,834 @@
+<style>
+section.shm-hotspot {
+    display: block;
+    overflow: hidden;
+}
+section.shm-hotspot .shm-container {
+    display: block;
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
+    {% if section.settings.full_width == true %}
+      padding: 0;
+    {% else %}
+      padding: 0 50px;
+    {% endif %}
+}
+section.shm-hotspot .shm-container .shm-body {
+    display: block;
+    position: relative;
+}
+section.shm-hotspot .shm-image-box {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+section.shm-hotspot .shm-image-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+section.shm-hotspot .shm-image-box img.mob-image {
+    display: none;
+}
+/* start texts */
+section.shm-hotspot .shm-hotspot-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    {% if section.settings.overlay_style == "full" %}
+      padding: 70px;
+      color: white;
+      width: 100%;
+      height: 100%;
+      background-color: #00000036;
+    {% elsif section.settings.overlay_style == "box" %}
+      padding: 70px;
+      color: white;
+      width: 100%;
+      height: 100%;
+      background-color: #00000036;
+    {% else %}
+      padding: 70px;
+      color: white;
+      width: 100%;
+      height: 100%;
+      background-color: #00000000;
+    {% endif %}
+
+    display: flex;
+    justify-content: center;
+    {% if section.settings.overlay-position == "top-left" %}
+      justify-content: start !important;
+      align-items: start !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "top-center" %}
+      justify-content: center !important;
+      align-items: start !important;
+      text-align: center !important;
+    {% elsif section.settings.overlay-position == "top-right" %}
+      justify-content: right !important;
+      align-items: start !important;
+      text-align: right !important;
+    {% elsif section.settings.overlay-position == "middle-left" %}
+      justify-content: start !important;
+      align-items: center !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "middle-center" %}
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+    {% elsif section.settings.overlay-position == "middle-right" %}
+      justify-content: right !important;
+      align-items: center !important;
+      text-align: right !important;
+    {% elsif section.settings.overlay-position == "bottom-left" %}
+      justify-content: start !important;
+      align-items: end !important;
+      text-align: start !important;
+    {% elsif section.settings.overlay-position == "bottom-center" %}
+      justify-content: center !important;
+      align-items: end !important;
+      text-align: center !important;
+    {% else %}
+      justify-content: right !important;
+      align-items: end !important;
+      text-align: right !important;
+    {% endif %}
+}
+section.shm-hotspot .shm-hotspot-content {
+    {% if section.settings.overlay_style == "box" %}
+      color: black;
+      width: 450px;
+      height: auto;
+      background-color: #ffffffb8;
+      padding: 40px 60px;
+    {% else %}
+      display: block;
+      width: 100%;
+    {% endif %}
+}
+section.shm-hotspot .shm-subheading-box {
+    display: block;
+    padding: 30px 0;
+}
+section.shm-hotspot .shm-subheading-box span.shm-subheading {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+section.shm-hotspot .shm-section-heading {
+    display: block;
+    margin-bottom: 18px;
+}
+section.shm-hotspot .shm-section-heading h2,
+section.shm-hotspot .shm-section-heading h1 {
+    display: block;
+    font-size: 34px;
+    line-height: normal;
+    margin: 0;
+    max-width: {{ section.settings.heading_max_width }}em;
+    color: inherit;
+    {% if section.settings.overlay-position == "top-left" %}
+      margin: 0;
+    {% elsif section.settings.overlay-position == "top-center" %}
+      margin: 0 auto;
+    {% elsif section.settings.overlay-position == "top-right" %}
+      margin: 0 0 0 auto;
+    {% elsif section.settings.overlay-position == "middle-left" %}
+      margin: 0;
+    {% elsif section.settings.overlay-position == "middle-center" %}
+      margin: 0 auto;
+    {% elsif section.settings.overlay-position == "middle-right" %}
+      margin: 0 0 0 auto;
+    {% elsif section.settings.overlay-position == "bottom-left" %}
+      margin: 0;
+    {% elsif section.settings.overlay-position == "bottom-center" %}
+      margin: 0 auto;
+    {% else %}
+      margin: 0 0 0 auto;
+    {% endif %}
+}
+section.shm-hotspot .shm-detail-box {
+    display: block;
+    padding: 10px 0;
+}
+section.shm-hotspot .shm-detail-box .shm-detail {
+    display: block;
+}
+section.shm-hotspot .shm-detail-box .shm-detail p {
+    display: block;
+    margin: 0;
+    line-height: normal;
+    font-size: {% if section.settings.enlarge_text == true %}20px{% else %}15px{% endif %};
+}
+
+
+section.shm-hotspot .shm-btn-wrapper {
+    display: block;
+    padding: 20px 0;
+}
+section.shm-hotspot .shm-btn-wrapper a.shm-btn {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 5px;
+    width: 100%;
+    text-align: center;
+    {% if section.settings.button_style == "primary" %}
+      border: 2px solid #232323;
+      background: #232323;
+      color: white;
+      text-decoration: none;
+      padding: 11px;
+      max-width: 150px;
+    {% elsif section.settings.button_style == "secondary" %}
+      border: 2px solid #232323;
+      background: #FFF;
+      color: #000;
+      text-decoration: none;
+      padding: 11px;
+      max-width: 150px;
+    {% else %}
+      border: 2px solid transparent;
+      background: transparent;
+      color: #232323;
+      text-decoration: underline;
+      padding: 0px;
+      max-width: fit-content;
+    {% endif %}
+    transition: all 0.2s ease;
+    line-height: normal;
+    border-radius: 4px;
+}
+section.shm-hotspot .shm-btn-wrapper a.shm-btn:last-child {
+    margin-right: 0;
+}
+section.shm-hotspot .shm-btn-wrapper a.shm-btn:hover {
+  {% if section.settings.button_style == "primary" %}
+    background-color: #000;
+  {% elsif section.settings.button_style == "secondary" %}
+    background-color: #232323;
+    color: white;
+  {% else %}
+    background-color: transparent;
+  {% endif %}
+}
+
+
+
+section.shm-hotspot .shm-btn-wrapper a.shm-btn-2 {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 5px;
+    width: 100%;
+    text-align: center;
+  {% if section.settings.button_style-2 == "primary" %}
+    border: 2px solid #232323;
+    background: #232323;
+    color: white;
+    text-decoration: none;
+    padding: 11px;
+    max-width: 150px;
+  {% elsif section.settings.button_style-2 == "secondary" %}
+    border: 2px solid #232323;
+    background: #FFF;
+    color: #000;
+    text-decoration: none;
+    padding: 11px;
+    max-width: 150px;
+  {% else %}
+    border: 2px solid transparent;
+    background: transparent;
+    color: #232323;
+    text-decoration: underline;
+    padding: 0px;
+    max-width: fit-content;
+  {% endif %}
+    transition: all 0.2s ease;
+    line-height: normal;
+    border-radius: 4px;
+}
+section.shm-hotspot .shm-btn-wrapper a.shm-btn-2 {
+    margin-right: 0;
+}
+section.shm-hotspot .shm-btn-wrapper a.shm-btn-2:hover {
+  {% if section.settings.button_style-2 == "primary" %}
+    background-color: #000;
+  {% elsif section.settings.button_style-2 == "secondary" %}
+    background-color: #232323;
+    color: white;
+  {% else %}
+    background-color: transparent;
+  {% endif %}
+}
+/* end texts */
+/* Start Buttons */
+{% for block in section.blocks %}
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }}{
+    position: absolute;
+    top: {{ block.settings.hotspot_y }}%;
+    left: {{ block.settings.hotspot_x }}%;
+    z-index: 2;
+}
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-box-content{
+    position: relative;
+}
+section.shm-hotspot .shm-image-box button.hotspot-btn-{{ forloop.index }} {
+    background-color: {{ section.settings.hotspot_color }};
+    color: {{ section.settings.hotspot_color_text }};
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: {% if section.settings.button_content == 'plus' %}28px{% else %}18px{% endif %};
+    font-family: 'Assistant';
+    {% if section.settings.outer_circle == 'pulse' %}
+    animation: heartbeat 3s infinite;
+    {% elsif section.settings.outer_circle == 'still' %}
+    box-shadow: 0px 0px 0px 10px {{ section.settings.hotspot_color }}80;
+    {% else %}
+    box-shadow: 0px 0px 0px 0px {{ section.settings.hotspot_color }}80;
+    {% endif %}
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+section.shm-hotspot .shm-image-box button.hotspot-btn-{{ forloop.index }}.active {
+    rotate: -45deg;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 0px 2px {{ section.settings.hotspot_color }}80 !important;
+}
+@keyframes heartbeat {
+    0% {
+        box-shadow: 0px 0px 0px 0px {{ section.settings.hotspot_color }}80;
+    }
+    20% {
+        box-shadow: 0px 0px 0px 8px {{ section.settings.hotspot_color }}80;
+    }
+    50% {
+        box-shadow: 0px 0px 0px 8px {{ section.settings.hotspot_color }}80;
+    }
+    80% {
+        box-shadow: 0px 0px 0px 10px {{ section.settings.hotspot_color }}00;
+    }
+    100% {
+        box-shadow: 0px 0px 0px 0px {{ section.settings.hotspot_color }}00;
+    }
+}
+
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-content {
+    display: block;
+    width: 100%;
+    min-width: 380px;
+    background-color: #ffffffdb;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    {% if block.settings.hotspot_x >= 50 %}
+      transform: translate(-105%, -30%);
+    {% else %}
+      transform: translate(14%, -30%);
+    {% endif %}
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-content.active {
+    opacity: 1;
+    pointer-events: all;
+}
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-content .image-box {
+    display: block;
+    width: 100%;
+    max-width: {{ block.settings.icon_width }}px;
+    margin-bottom: 12px;
+}
+section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-content .image-box img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+{% endfor %}
+section.shm-hotspot .shm-image-box .hotspot-content span {
+    display: block;
+    font-size: 15px;
+    line-height: normal;
+    margin: 0;
+    margin-bottom: 12px;
+}
+section.shm-hotspot .shm-image-box .hotspot-content p {
+    font-size: 15px;
+    line-height: normal;
+    margin-bottom: 12px;
+}
+section.shm-hotspot .shm-image-box .hotspot-content p:last-child {
+    margin: 0;
+}
+/* End Buttons */
+@media screen and (max-width: 920px) {
+  {% for block in section.blocks %}
+      section.shm-hotspot .shm-image-box .hotspot-box-{{ forloop.index }} .hotspot-content {
+            transform: translate(-50%, -120%) !important;
+      }
+  {% endfor %}
+}
+@media screen and (max-width: 768px) {
+  section.shm-hotspot .shm-container {
+      padding: 0;
+  }
+  section.shm-hotspot .shm-section-heading h2, 
+  section.shm-hotspot .shm-section-heading h1 {
+      display: block;
+      font-size: 27px;
+      line-height: normal;
+      margin: 0;
+  }
+  section.shm-hotspot .shm-detail-box .shm-detail p {
+      font-size: 18px;
+  }
+  section.shm-hotspot .shm-hotspot-box {
+      padding: 20px;
+  }
+  section.shm-hotspot .shm-hotspot-box {
+      position: unset;
+      background-color: white;
+      color: black;
+  }
+  section.shm-hotspot .shm-image-box img.desk-image {
+      display: none;
+  }
+  section.shm-hotspot .shm-image-box img.mob-image {
+      display: block;
+  }
+  {% for block in section.blocks %}
+  section.shm-hotspot .shm-image-box button.hotspot-btn-{{ forloop.index }} {
+      top: {{ block.settings.hotspot_y_mobile }}%;
+      left: {{ block.settings.hotspot_x_mobile }}%;
+  }
+  {% endfor %}
+}
+</style>
+<section class="shm-hotspot">
+    <div class="shm-container">
+        <div class="shm-body">
+          {% if section.settings.desk-image != blank %}
+            <div class="shm-image-box">
+                <img src="{{ section.settings.desk-image | img_url: 'master' }}" alt="" class="desk-image">
+                {% if section.settings.mob-image != blank %}
+                  <img src="{{ section.settings.mob-image | img_url: 'master' }}" alt="" class="mob-image">
+                {% endif %}
+                {% for block in section.blocks %}
+                  <div class="hotspot-box-{{ forloop.index }}">
+                    <div class="hotspot-box-content">
+                      <button class="hotspot-btn-{{ forloop.index }} hotspot-btn">{% if section.settings.button_content == 'plus' %}+{% else %}{{ forloop.index }}{% endif %}</button>
+                      {% if block.settings.hotspot-heading != blank or block.settings.hotspot-detail != blank %}
+                        <div class="hotspot-content">
+                            {% if block.settings.icon-image != blank %}
+                            <div class="image-box">
+                              <img src="{{ block.settings.icon-image | img_url: 'master' }}">
+                            </div>
+                            {% endif %}
+                            {% if block.settings.hotspot-heading != blank %}
+                              <span>{{ block.settings.hotspot-heading }}</span>
+                            {% endif %}
+                            {% if block.settings.hotspot-detail != blank %}
+                              <div>{{ block.settings.hotspot-detail }}</div>
+                            {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+          {% endif %}
+          <div class="shm-hotspot-box">
+            <div class="shm-hotspot-content">
+              <!-- heading -->
+                <div class="shm-section-heading">
+                    {% if section.settings.subheading != blank %}
+                      <div class="shm-subheading-box">
+                          <span class="shm-subheading">{{ section.settings.subheading }}</span>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.primary-heading != blank %}
+                      {% if section.settings.heading != blank %}
+                        <h1>{{ section.settings.heading }}</h1>
+                      {% endif %}
+                    {% else %}
+                      {% if section.settings.heading != blank %}
+                        <h2>{{ section.settings.heading }}</h2>
+                      {% endif %}
+                    {% endif %}
+                    {% if section.settings.detail != blank %}
+                      <div class="shm-detail-box">
+                          <div class="shm-detail">
+                              <p>{{ section.settings.detail }}</p>
+                          </div>
+                      </div>
+                    {% endif %}
+                    <div class="shm-btn-wrapper">
+                      {% if section.settings.btn != blank %}
+                        <a href="{{ section.settings.btn-link }}" class="shm-btn">{{ section.settings.btn }}</a>
+                      {% endif %}
+                      {% if section.settings.btn-2 != blank %}
+                        <a href="{{ section.settings.btn-link-2 }}" class="shm-btn-2">{{ section.settings.btn-2 }}</a>
+                      {% endif %}
+                    </div>
+                </div>
+              <!-- end heading -->
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "SHM Hotspot",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desk-image",
+      "label": "Select Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob-image",
+      "label": "Select Mobile image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_color",
+      "label": "Hotspot Background color",
+      "default": "#070707"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_color_text",
+      "label": "Hotspot color",
+      "default": "#FFF"
+    },
+    {
+      "type": "select",
+      "id": "button_content",
+      "label": "Hotspot button content",
+      "default": "plus",
+      "options": [
+        {
+          "value": "plus",
+          "label": "Plus"
+        },
+        {
+          "value": "number",
+          "label": "Number"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "outer_circle",
+      "label": "Outer circle",
+      "default": "pulse",
+      "options": [
+        {
+          "label": "Pulse",
+          "value": "pulse"
+        },
+        {
+          "label": "Still",
+          "value": "still"
+        },
+        {
+          "label": "None",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "id": "full_width",
+      "type": "checkbox",
+      "label": "Full page width",
+      "default": true
+    },
+    {
+      "type": "select",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top Left"
+          },
+          {
+            "value": "top-center",
+            "label": "Top Center"
+          },
+          {
+            "value": "top-right",
+            "label": "Top Right"
+          },
+          {
+            "value": "middle-left",
+            "label": "Middle Left"
+          },
+          {
+            "value": "middle-center",
+            "label": "Middle Center"
+          },
+          {
+            "value": "middle-right",
+            "label": "Middle Right"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom Left"
+          },
+          {
+            "value": "bottom-center",
+            "label": "Bottom Center"
+          },
+          {
+            "value": "bottom-right",
+            "label": "Bottom Right"
+          }
+        ],
+        "id": "overlay-position",
+        "label": "Text overlay position",
+        "default": "top-left"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "Overlay style",
+      "default": "full",
+      "options": [
+        {
+          "value": "full",
+          "label": "Tint"
+        },
+        {
+          "value": "box",
+          "label": "Box"
+        },
+        {
+          "value": "no_background",
+          "label": "No background"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "primary-heading",
+      "label": "Set as primary page heading",
+      "info": "Use <h1> tag. One per page recommended."
+    },
+    {
+      "type": "range",
+      "id": "heading_max_width",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "em",
+      "label": "Maximum heading width",
+      "default": 10
+    },
+    {
+      "type": "richtext",
+      "id": "detail",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "enlarge_text",
+      "label": "Enlarge text",
+      "default": true
+    },
+
+    {
+      "type": "text",
+      "id": "btn",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "btn-link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "default": "primary",
+      "options": [
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "label": "Link",
+            "value": "link"
+          }
+        ]
+      },
+
+    {
+      "type": "text",
+      "id": "btn-2",
+      "label": "Button 2"
+    },
+    {
+      "type": "url",
+      "id": "btn-link-2",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style-2",
+      "label": "Button 2 style",
+      "default": "primary",
+      "options": [
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "label": "Link",
+            "value": "link"
+          }
+        ]
+      }
+  ],
+  "blocks": [
+    {
+      "type": "Hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "hotspot_x",
+          "label": "Horizontal position",
+          "min": 15,
+          "max": 85,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y",
+          "label": "Vertical position",
+          "min": 15,
+          "max": 85,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x_mobile",
+          "label": "Horizontal position (mobile image)",
+          "min": 15,
+          "max": 85,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y_mobile",
+          "label": "Vertical position (mobile image)",
+          "min": 15,
+          "max": 85,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "hotspot-heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "hotspot-detail",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon-image",
+          "label": "Custom Icon"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Icon width",
+          "min": 20,
+          "max": 340,
+          "unit": "px",
+          "step": 4,
+          "default": 32
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SHM Hotspot",
+      "category": "Section Category"
+    }
+  ]
+}
+{% endschema %}
+<script>
+$(document).on('click', '.hotspot-btn', function(e) {
+  e.stopPropagation(); // Button click par document ka click event na chale
+  
+  // Sabse pehle clicked button ka content dhoondo
+  var closestBox = $(this).closest('[class^="hotspot-box-"]');
+  var hotspotContent = closestBox.find('.hotspot-content');
+  
+  // Ab toggle function use karo active class ko add/remove karne ke liye
+  hotspotContent.toggleClass('active');
+  $(this).toggleClass('active');
+});
+
+// Document par click listener lagao jo active class remove kar de
+$(document).on('click', function() {
+  $('.hotspot-content').removeClass('active');
+  $('.hotspot-btn').removeClass('active');
+});
+</script>
