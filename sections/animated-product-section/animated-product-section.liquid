@@ -1,0 +1,273 @@
+{% comment %} 2 CDNs are essential Paste in theme.liquid {% endcomment %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+  crossorigin="anonymous">
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+
+
+{% comment %} html code {% endcomment %}
+
+<div class="follow-us three-flavors" style="background-color:{{ section.settings.section_background_color }};">
+  <div class="border-image">
+    {% if section.settings.border_image %}
+      <img src="{{ section.settings.border_image | img_url: 'master' }}" alt="">
+    {% endif %}
+  </div>
+  <div class="container">
+    <div class="heading">
+      <div class="main-heading">
+        <h2 style="color:{{ section.settings.heading_text_color }};">{{ section.settings.heading_text }}</h2>
+        <p style="color:{{ section.settings.p_color }};">{{ section.settings.p_text }}</p>
+      </div>
+    </div>
+    <div class="row">
+      {% for block in section.blocks %}
+        <div class="col-md-4">
+          <a href="{{ block.settings.card_Url }}">
+            <div class="card">
+              {% if block.settings.card_image %}
+                <div class="card-image">
+                  {% if block.settings.card_image %}
+                    <img
+                      class="card-img product_image"
+                      src="{{ block.settings.card_image | img_url: 'master' }}"
+                      alt="">
+                  {% endif %}
+                  {% if block.settings.card_hover_image %}
+                    <img
+                      class="img_hover"
+                      src="{{ block.settings.card_hover_image | img_url: 'master' }}"
+                      alt="">
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class="card-body">
+                <h3 style="color:{{ block.settings.card_text_color }};">{{ block.settings.card_text }}</h3>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="site-btn">
+      <a href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</div>
+
+
+{% comment %} css code {% endcomment %}
+
+{% style %}
+  .follow-us {
+    margin: 50px 0
+  }
+
+  .three-flavors .card-image .product_image {
+    transform: rotate(95deg);
+  }
+
+  .follow-us.three-flavors p {
+    font-size: 25px;
+  }
+
+  .border-image {
+
+    height: 73px;
+
+  }
+  .border-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .follow-us .heading {
+    text-align: center;
+  }
+  .follow-us h2 {
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: 500;
+  }
+  .three-flavors .site-btn a {
+    background-color: #FF9900;
+    color: #fff;
+  }
+  .three-flavors .site-btn a:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .three-flavors .site-btn {
+    text-align: center;
+  }
+
+  .three-flavors .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent !important;
+    background-clip: border-box;
+    border: none;
+    text-align: center;
+    border-radius: 0.25rem;
+  }
+
+  .follow-us .card-image {
+    position: relative;
+    padding-bottom: 110%;
+  }
+
+  .follow-us .card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .three-flavors .card .img_hover {
+    opacity: 0;
+    transition: all 0.4s linear;
+  }
+  .three-flavors .card:hover .img_hover {
+    opacity: 1;
+    transition: all 0.4s linear;
+    animation: bouns infinite 2s ease-in-out;
+  }
+  .three-flavors .card:hover .product_image {
+    opacity: 0;
+    transition: all 0.4s linear;
+  }
+
+  @keyframes bouns {
+    0% {}
+  50% {
+    transform: translateY(-5%);
+  }
+  100% {}
+}
+
+@media(max-width: 992px) {
+  .follow-us h2 {
+    text-transform: uppercase;
+    font-size: 46px !important;
+    font-weight: 500;
+  }
+
+  .three-flavors .card h3 {
+    font-size: 20px;
+  }
+
+}
+
+@media(max-width: 768px) {
+  .follow-us {
+    margin: 25px 0
+  }
+  .follow-us h2 {
+    text-transform: uppercase;
+    font-size: 37px !important;
+    font-weight: 500;
+  }
+}
+{% endstyle %}
+
+{% comment %} schema here {% endcomment %}
+
+{% schema %}
+  {
+    "name": "Three Flavors",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "border_image",
+        "label": "border image"
+      },
+      {
+        "type": "color",
+        "id": "section_background_color",
+        "label": "Section Background Color"
+      },
+      {
+        "type": "text",
+        "id": "heading_text",
+        "label": "Heading Text"
+      },
+      {
+        "type": "color",
+        "id": "heading_text_color",
+        "label": "Heading Text Color"
+      }, {
+        "type": "text",
+        "id": "p_text",
+        "label": "Pragraph Text"
+      }, {
+        "type": "color",
+        "id": "p_color",
+        "label": "Pragraph Color"
+      }, {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text"
+      }, {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button  URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "card",
+        "name": "Card",
+        "settings": [
+          {
+            "type": "url",
+            "id": "card_Url",
+            "label": "Card Url"
+          },
+          {
+            "type": "image_picker",
+            "id": "card_image",
+            "label": "Card Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "card_hover_image",
+            "label": "Card hover Image"
+          },
+          {
+            "type": "text",
+            "id": "card_text",
+            "label": "Card Text"
+          }, {
+            "type": "color",
+            "id": "card_text_color",
+            "label": "Card Text Color"
+          }, {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Icon Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Three Flavors",
+        "category": "Social"
+      }
+    ]
+  }
+{% endschema %}
