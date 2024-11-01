@@ -1,0 +1,566 @@
+<!-- step 1 "Please copy and paste these files at the end of the head in theme.liquid." -->
+
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+-->
+<!-- step 2 "Please copy and paste these files at the end of the body in theme.liquid." -->
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!--
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<!-- step 3 "Please copy and paste these files at the end of the body in theme.liquid." -->
+<!--
+  <script>
+  $('.slider').slick({
+  dots: true,
+  infinite: true,
+  speed: 2000,
+  autoplay: false,
+  autoplaySpeed:1000,
+  slidesToShow: 3,
+  centerMode: true,
+  centerPadding: '80px',
+  slidesToScroll: 1,
+  responsive: [
+  {
+  breakpoint: 1024,
+  settings: {
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: true,
+  dots: true
+  }
+  },
+  {
+  breakpoint: 800,
+  settings: {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  infinite: true,
+  dots: true
+  }
+  },
+  {
+  breakpoint: 600,
+  settings: {
+  slidesToShow: 1,
+  slidesToScroll: 1
+  }
+  },
+  {
+  breakpoint: 480,
+  settings: {
+  slidesToShow: 1,
+  centerMode: false,
+  slidesToScroll: 1
+  }
+  }
+  // You can unslick at a given breakpoint now by adding:
+  // settings: "unslick"
+  // instead of a settings object
+  ]
+  });
+
+  </script>
+-->
+{% style %}
+  #shopify-section-template--17203107135660__testimonials_card_YbJQWB .the-review {
+    background: #FF8B68 !important;
+    padding-bottom: 146px !important;
+  }
+  #shopify-section-template--17203107135660__testimonials_card_YbJQWB .the-review .card {
+    border: none !important;
+  }
+
+  .the-review {
+    position: relative;
+  }
+
+  .slick-dots li button:before {
+    font-family: slick;
+    font-size: 6px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 18px;
+    opacity: 1;
+    content: '•';
+    border-radius: 100%;
+    background-color: red;
+    text-align: center;
+    color: unset;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: unset;
+    background-color: #000;
+  }
+  .the-review .row {
+    align-items: center;
+  }
+
+  .the-review .container {
+    padding: 0 20px;
+  }
+
+  .the-review .site-btn {
+    text-align: center;
+    margin-top: 105px;
+  }
+
+  .the-review .heading {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .slick-active.slick-center .card {
+    width: 100%;
+    transform: scale(1.5);
+    transition: all 0.2s linear;
+    box-shadow: 0 18px 23px -26px #000;
+  }
+
+  .slick-active.slick-center .card p {
+    font-size: 19px;
+    max-width: 1413px;
+  }
+  .slick-active.slick-center .card h5 {
+    font-size: 20px;
+  }
+
+  .slick-active.slick-center .card h5 {
+    margin-top: 30px !important;
+  }
+  .the-review .card {
+    text-align: center;
+    padding: 52px 50px 36px;
+    width: 100%;
+    border-radius: 32px;
+    height: 100%;
+    margin: auto;
+    transition: all 0.2s linear;
+  }
+
+  .the-review .slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 58px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .the-review .card p,
+  .the-review .card h5 {
+    font-size: 16px;
+    width: 100%;
+    max-width: 283px;
+    margin: 48px auto 0;
+  }
+
+  .slick-initialized .slick-slide {
+    display: block;
+    transform: scale(0.9);
+  }
+
+  .the-review .heading p {
+    font-size: 16px;
+  }
+
+  .the-review .card h5 {
+    margin-top: 56px !important;
+  }
+
+  .the-review .star a {
+    color: #FF007A;
+    text-decoration: none;
+    font-size: 30px;
+  }
+  .the-review .heading h3 {
+    font-size: 48px;
+  }
+
+
+  .slider-card {
+    position: relative;
+    transition: all 0.5s ease;
+    /* Smooth transitions */
+  }
+
+
+  #prevBtn,
+  #nextBtn {
+    background-color: transparent;
+    border: 2px solid #FF007A;
+    border-radius: 50%;
+    color: #FF007A;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  #prevBtn:hover,
+  #nextBtn:hover {
+    background-color: #FF007A;
+    color: white;
+  }
+
+  .slider-card .card {
+    transition: top 0.5s ease
+    , left 0.5s ease
+    , z-index 0s ease;
+    /* Adjust timing and easing as needed */
+  }
+
+
+  #prevBtn,
+  #nextBtn {
+    background-color: transparent;
+    border: 2px solid #FF007A;
+    border-radius: 50%;
+    color: #FF007A;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 40%;
+  }
+
+  #nextBtn {
+    right: 159px;
+  }
+  #prevBtn {
+    left: -67px;
+  }
+
+  button#nextBtn i,
+  button#prevBtn i {
+    font-size: 18px;
+  }
+
+  .the-review .border-image {
+    position: absolute !important;
+    top: -49px !important;
+    width: 100% !important;
+  }
+
+
+  .the-review .border-image {
+    top: 0;
+    width: 100%;
+    height: 79px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(-29%);
+    z-index: 1 !important;
+  }
+
+  .slick-slide {
+    transform: scale(0.8) !important;
+    /* Reduce the size of non-active slides */
+    opacity: 1;
+    /* Reduce the opacity of non-active slides */
+    transition: transform 0.3s
+    , opacity 0.3s;
+    /* Smooth transition */
+    margin: 0 20px;
+    /* Add space between the slides */
+  }
+
+
+  @media(max-width: 1400px) {
+    #nextBtn {
+      right: 80px;
+    }
+  }
+
+  @media(max-width: 1241px) {
+    .the-review .container {}
+  #nextBtn {
+    right: 74px;
+  }
+}
+
+@media(max-width: 1200px) {
+  .the-review .heading h3 {
+    font-size: 39px;
+  }
+
+}
+
+@media(max-width: 1023px) {
+  .the-review .star a {
+    color: #FF007A;
+    text-decoration: none;
+    font-size: 22px;
+  }
+
+  .the-review .card {
+    text-align: center;
+    padding: 52px 21px 36px;
+    width: 100%;
+    border-radius: 32px;
+    height: 100%;
+    margin: auto;
+    transition: all 0.2s linear;
+  }
+  .slick-active.slick-center .card p {
+    font-size: 16px;
+    max-width: 1413px;
+  }
+  .the-review .card p,
+  .the-review .card h5 {
+    font-size: 15px;
+    width: 100%;
+    max-width: 320px;
+    margin: 48px auto 0;
+  }
+}
+
+@media(max-width: 992px) {
+
+  .heading {
+    margin-top: 49px;
+  }
+  #prevBtn {
+    left: 262px;
+    top: 97%;
+  }
+
+  #nextBtn {
+    right: 324px;
+    top: 97%;
+  }
+}
+
+@media(max-width: 801px) {
+  .slick-active.slick-center .card {
+    width: 100%;
+    transform: scale(1.2);
+    max-width: 541px;
+    transition: all 0.2s linear;
+    box-shadow: 0 18px 23px -26px #000;
+  }
+}
+
+@media(max-width: 351px) {
+  .the-review .card p,
+  .the-review .card h5 {
+    font-size: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 48px auto 0;
+  }
+  .slick-active.slick-center .card h5 {
+    font-size: 18px;
+  }
+  .slick-active.slick-center .card p {
+    font-size: 14px;
+    max-width: 1413px;
+  }
+  .the-review .card {
+    text-align: center;
+    padding: 52px 11px 36px;
+    width: 100%;
+    border-radius: 32px;
+    height: 100%;
+    margin: auto;
+    transition: all 0.2s linear;
+  }
+}
+
+@media(max-width: 321px) {
+  .the-review .card {
+    text-align: center;
+    padding: 52px 11px 36px;
+    width: 100%;
+    border-radius: 32px;
+    height: 100%;
+    margin: auto;
+    transition: all 0.2s linear;
+  }
+
+  .slick-active.slick-center .card h5 {
+    font-size: 16px;
+  }
+
+  .the-review .card p,
+  .the-review .card h5 {
+    font-size: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 23px auto 0;
+  }
+
+  .slick-active.slick-center .card p {
+    font-size: 13px;
+    max-width: 1413px;
+  }
+}
+{% endstyle %}
+
+<div class="the-review" style="padding-top:{{ section.settings.padding_top }}px; padding-bottom:{{ section.settings.padding_bottom }}px;">
+  <div class="border-image">
+    {% if section.settings.border_image %}
+      <img src="{{ section.settings.border_image | img_url: 'master' }}" alt="">
+    {% endif %}
+  </div>
+  <div class="container-fluid">
+    <div class="heading">
+      <h3 style="color:{{ section.settings.heading_color }};">{{ section.settings.main_heading }}</h3>
+      <p style="color:{{ section.settings.sub_heading_color }};}">{{ section.settings.sub_heading }}</p>
+    </div>
+    <div class="row slider">
+      {% assign slider-card = section.blocks | where: 'type', 'images' %}
+      {% for card in slider-card %}
+        <div class="col">
+          <div class="slider-card">
+            <div class="card" style="background-color:{{ card.settings.card_background_color }};">
+              {% if card.settings.add_image %}
+                <img src="{{ card.settings.add_image | img_url: "200x" }}" alt="">
+              {% endif %}
+              <div class="star">
+                <a href="#">
+                  <i class="fa-solid fa-star"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-solid fa-star"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-solid fa-star"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-solid fa-star"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-solid fa-star"></i>
+                </a>
+              </div>
+              <div class="text">
+                <p style="color:{{ card.settings.text_color }};">{{ card.settings.add_card_text }}</p>
+              </div>
+              <div class="sub-text">
+                <h5 style="color:{{ card.settings.text_color }};">{{ card.settings.add_card_sub_text }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  <!--
+    <div class="site-btn">  <a href="{{ section.settings.site_btn_url }}" style="color:{{ section.settings.site_btn_color }};">
+    {{- section.settings.site_btn_text -}}
+    </a>
+    </div>
+  -->
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "testimonals card",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "border_image",
+        "label": "border image"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "padding top",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "padding bottom",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1
+      },
+      {
+        "type": "text",
+        "id": "main_heading",
+        "label": "heading"
+      }, {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color"
+      }, {
+        "type": "text",
+        "id": "sub_heading",
+        "label": "Sub heading"
+      }, {
+        "type": "color",
+        "id": "sub_heading_color",
+        "label": " Sub Heading Color"
+      }, {
+        "type": "text",
+        "id": "site_btn_text",
+        "label": "Site Btn Text"
+      }, {
+        "type": "url",
+        "id": "site_btn_url",
+        "label": "Site Btn Url"
+      }, {
+        "type": "color",
+        "id": "site_btn_color",
+        "label": " Site Btn Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "images",
+        "name": "image slider",
+        "settings": [
+          {
+            "type": "color",
+            "id": "card_background_color",
+            "label": "Card Backgrund Color"
+          },
+          {
+            "type": "image_picker",
+            "id": "add_image",
+            "label": "Add Image"
+          },
+          {
+            "type": "text",
+            "id": "add_card_text",
+            "label": "Add Text"
+          },
+          {
+            "type": "text",
+            "id": "add_card_sub_text",
+            "label": "Add Sub Text"
+          }, {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Aly Testimonal Slider"
+      }
+    ]
+  }
+{% endschema %}
