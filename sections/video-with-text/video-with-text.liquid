@@ -1,0 +1,312 @@
+{% style %}
+.right-content .video-with-img-content:nth-child(2) {
+    margin-top: 25px;
+}
+  
+.video-with-img .container {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+}
+.video-with-img .row {
+    align-items: center;
+}
+.video-with-img .box img, .box video {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+.video-with-img .box img {
+ box-shadow: rgba(50, 50, 93, .25) 0 13px 27px -5px, rgba(0, 0, 0, .3) 0 8px 16px -8px;
+}
+.video-with-img .right-content {
+    display: flex;
+}
+.video-with-img .video-with-img-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.video-with-img .box .img, .box .video {
+    display: flex;
+    height: 268px;
+    width: 268px;
+    border-radius: 72px;
+    margin: 12px;
+}
+ .video-with-img  .box {
+    display: flex;
+    justify-content: end;
+}
+ .video-with-img  .site-btn a {
+    text-transform: uppercase;
+    background-color: pink;
+    padding: 7px 20px;
+    display: inline-block;
+    box-shadow: 0px 4px 8px -3px #000;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+   text-decoration: none;
+}
+ .video-with-img .site-btn a:hover {
+    box-shadow: 0px 9px 12px -4px #000;
+    transform: scale(1.05);
+}
+    .video-with-img p {
+    font-size: 15px;
+}
+ .video-with-img h2 {
+    font-size: 65px;
+    text-transform: uppercase;
+    margin: 0;
+}
+ .video-with-img  span {
+    text-transform: capitalize;
+    font-size: 23px;
+    font-style: italic;
+}
+.video-with-img .heading {
+    padding-right: 40px;
+}
+@media(max-width:1311px) {
+    .video-with-img .container {
+        width: 100%;
+        max-width: 1300px;
+        margin: auto;
+        padding: 0 35px;
+    }
+}
+@media(max-width:862px) {
+  .video-with-img h2 {
+    font-size: 51px;
+    text-transform: uppercase;
+    margin: 0;
+}
+.video-with-img span {
+    text-transform: capitalize;
+    font-size: 20px;
+    font-style: italic;
+}
+}
+@media(max-width:768px) {
+  .video-with-img .row {
+    flex-direction: column;
+}
+.video-with-img .col {
+    width: 100% !important;
+}
+    .video-with-img .box {
+        display: flex;
+        justify-content: start;
+    }
+  .video-with-img .box .img, .box .video {
+    display: flex;
+    height: 268px;
+    width: 310px;
+    border-radius: 72px;
+    margin: 12px;
+}
+}
+@media(max-width:501px) {
+      .video-with-img .box .img, .box .video {
+        display: flex;
+        height: 193px;
+        width: 310px;
+        border-radius: 72px;
+        margin: 12px;
+    }
+}
+@media(max-width:386px) {
+      .video-with-img .box .img, .box .video {
+        display: flex;
+        height: 149px;
+        width: 310px;
+        border-radius: 72px;
+        margin: 12px;
+    }
+}
+@media(max-width:372px)  {
+      .video-with-img h2 {
+        font-size: 40px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+      .video-with-img span {
+        text-transform: capitalize;
+        font-size: 18px;
+        font-style: italic;
+    }
+}
+@media(max-width:321px) {
+      .video-with-img .box .img, .box .video {
+        display: flex;
+        height: 113px;
+        width: 310px;
+        border-radius: 72px;
+        margin: 10px;
+    }
+}
+{% endstyle %}
+<div class="video-with-img" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="container">
+    <div class="row" style="display: flex;">
+      <div class="col" style="width: 50%;">
+        <div class="heading">
+          <span style="color: {{ section.settings.span_color }};">{{ section.settings.span_text }}</span>
+          <h2 style="color: {{ section.settings.h2_color }};">{{ section.settings.heading_text }}</h2>
+          <p style="color: {{ section.settings.p_color }};">{{ section.settings.paragraph_text }}</p>
+          <p style="color: {{ section.settings.p_color }};">{{ section.settings.paragraph_text_2 }}</p>
+          <div class="site-btn">
+            <a href="{{ section.settings.button_link }}" style="color: {{ section.settings.btn_text_color }}; background-color: {{ section.settings.btn_bg_color }};">
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="width: 50%;">
+      <div class="right-content">
+           {% for block in section.blocks  %}
+            <div class="video-with-img-content" style="flex-direction:{{ block.settings.flex_direction }};">
+              <div class="box">
+                   <div class="img">
+                <img src="{{ block.settings.add_img | img_url: '300x' }}" alt="">
+              </div>
+              </div>
+              <div class="box">
+                <div class="video">
+                  {% if block.settings.add_video  %}
+                  {{ block.settings.add_video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true }}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+           {% endfor %}
+           </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Video with Image Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "span_text",
+      "label": "Span Text",
+      "default": "Span Example"
+    },
+    {
+      "type": "color",
+      "id": "span_color",
+      "label": "Span Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Heading Example"
+    },
+    {
+      "type": "color",
+      "id": "h2_color",
+      "label": "Heading Color (H2)",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "paragraph_text",
+      "label": "First Paragraph Text",
+      "default": "First paragraph content here."
+    },
+    {
+      "type": "text",
+      "id": "paragraph_text_2",
+      "label": "Second Paragraph Text",
+      "default": "Second paragraph content here."
+    },
+    {
+      "type": "color",
+      "id": "p_color",
+      "label": "Paragraph Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click Here"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "number",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "add_img",
+          "label": "Add Img"
+        },
+         {
+          "type": "video",
+          "id": "add_video",
+          "label": "Add Video"
+        },
+     {
+      "type": "select",
+      "id": "flex_direction",
+      "label": "Flex Direction",
+      "options": [
+        {
+          "value": "column",
+          "label": "Column"
+        },
+        {
+          "value": "column-reverse",
+          "label": "Column Reverse"
+        }
+      ],
+      "default": "column"
+    },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video with Image Section"
+    }
+  ]
+}
+{% endschema %}
