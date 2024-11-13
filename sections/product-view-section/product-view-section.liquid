@@ -1,0 +1,195 @@
+<style>
+  #aly-container {
+    padding: 0% 2%;
+  }
+
+  /* Container styling */
+  .aly-switch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-radius: 30px;
+  }
+
+  /* Heading styling */
+  .switch-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Switch button container */
+  .switch-btn-cnt {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+    margin-bottom: 2rem;
+  }
+
+  /* Switch button styling */
+  .switch-btn-cnt li {
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    color: #333;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  /* Hover effect on buttons */
+  .switch-btn-cnt li:hover {
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  /* Active state */
+  .switch-btn-cnt li.active {
+    background-color: #333;
+    color: #fff;
+  }
+
+  /* Image styling */
+  .aly-switch-container img {
+    width: 60%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .aly-switch-container img.active {
+    opacity: 1;
+  }
+
+  /* Media Query for mobile screens */
+  @media (max-width: 600px) {
+    .switch-heading {
+      font-size: 1.5rem; /* Smaller heading on mobile */
+      margin-bottom: 1rem; /* Reduced margin */
+    }
+
+    .switch-btn-cnt {
+      gap: 0.5rem; /* Reduce the gap between buttons */
+    }
+
+    .switch-btn-cnt li {
+      font-size: 0.6rem; /* Smaller text on buttons */
+      padding: {{section.settings.btnPaddingY}}px {{section.settings.btnPaddingX}}px; /* Reduced padding on buttons */
+    }
+
+    .aly-switch-container img {
+      width: 100%; /* Larger image on mobile for better visibility */
+    }
+  }
+</style>
+
+<div id="aly-container">
+  <div class="aly-switch-container">
+    <h1 class="switch-heading">{{ section.settings.switch-heading }}</h1>
+    <div>
+      <ul class="switch-btn-cnt">
+        <li class="active" data-image="https://cdn.shopify.com/s/files/1/0863/2126/7006/{{ section.settings.image1 | image_url: 'master' }}" aria-selected="true">{{ section.settings.btn-1 }}</li>
+        <li data-image="https://cdn.shopify.com/s/files/1/0863/2126/7006/{{ section.settings.image2 | image_url: 'master' }}" aria-selected="false">{{ section.settings.btn-2 }}</li>
+        <li data-image="https://cdn.shopify.com/s/files/1/0863/2126/7006/{{ section.settings.image3 | image_url: 'master' }}" aria-selected="false">{{ section.settings.btn-3 }}</li>
+      </ul>
+    </div>
+    <div>
+      <img
+        id="switch-image"
+        class="active"
+        src="https://cdn.shopify.com/s/files/1/0863/2126/7006/{{ section.settings.image1 | image_url: 'master' }}"
+        alt="Bag Image"
+      />
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product-Switch-Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "switch-heading",
+      "label": "Enter Your Title",
+      "default": "Lorem Ipsum Dolor"
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "id": "btnPaddingY",
+      "label": "Button Padding Top-Bottom",
+      "default": "10"
+    },
+    {
+      "type": "text",
+      "id": "btn-1",
+      "label": "Enter Button Title 1",
+      "default": "Btn-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Select Image 1"
+    },
+    {
+      "type": "text",
+      "id": "btn-2",
+      "label": "Enter Button Title 2",
+      "default": "Btn-2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Select Image 2"
+    },
+    {
+      "type": "text",
+      "id": "btn-3",
+      "label": "Enter Button Title 3",
+      "default": "Btn-3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Select Image 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "image-Switch-Section"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  const buttons = document.querySelectorAll(".switch-btn-cnt li");
+  const image = document.getElementById("switch-image");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      buttons.forEach(btn => {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-selected", "false");
+      });
+
+      button.classList.add("active");
+      button.setAttribute("aria-selected", "true");
+
+      const newImageSrc = button.getAttribute("data-image");
+      image.classList.remove("active"); // Remove active class before changing image source
+      image.src = newImageSrc;
+
+      setTimeout(() => {
+        image.classList.add("active"); // Add active class back after updating image source
+      }, 50);
+    });
+  });
+</script>
