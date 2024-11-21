@@ -1,0 +1,86 @@
+<div class="logo-list-container">
+  <div class="aly-logos">
+    <img src="{{ section.settings.logos1 | img_url: 'master' }}" alt="logo">
+  </div>
+  <div class="aly-logos">
+    <img src="{{ section.settings.logos2 | img_url: 'master' }}" alt="logo">
+  </div>
+  <div class="aly-logos">
+    <img src="{{ section.settings.logos3 | img_url: 'master' }}" alt="logo">
+  </div>
+  <div class="aly-logos">
+    <img src="{{ section.settings.logos4 | img_url: 'master' }}" alt="logo">
+  </div>
+</div>
+<style>
+  .logo-list-container {
+    width: 100%;
+    padding: 0 10%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+  .aly-logos {
+    padding: 20px;
+    width: 100%;
+  }
+  .aly-logos img {
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+  .aly-logos img:hover {
+    transform: scale(1.05);
+  }
+  /* Tablet screens */
+  @media only screen and (max-width: 1024px) {
+    .logo-list-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  /* Small tablets and large mobile screens */
+  @media only screen and (max-width: 768px) {
+    .logo-list-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .aly-logos {
+      padding: 10px;
+    }
+  }
+  /* Mobile screens */
+  @media only screen and (max-width: 480px) {
+    .logo-list-container {
+      padding: 0 5%;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Logo List",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logos1",
+        "label": "Logo 1"
+      }, {
+        "type": "image_picker",
+        "id": "logos2",
+        "label": "Logo 2"
+      }, {
+        "type": "image_picker",
+        "id": "logos3",
+        "label": "Logo 3"
+      }, {
+        "type": "image_picker",
+        "id": "logos4",
+        "label": "Logo 4"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo List Section"
+      }
+    ]
+  }
+{% endschema %}
