@@ -1,1 +1,359 @@
+{% style %}
+
+  .follow-us   .site-btn a:nth-child(2) {
+    padding: 13px 136px;
+}
+.follow-us {
+    padding: 36px 0 100px;
+    position: relative;
+    z-index: 1;
+    margin-top: 42px;
+}
+  .follow-us a {
+      text-decoration: none !important;
+  }
+
+.follow-us .row {
+    margin-top: 60px !important;
+  display: flex;
+  gap: 20px ;
+}
+
+     .follow-us .container {
+    padding: 0 40px;
+}
+
+    .follow-us  .col-md-4 {
+    height: 100%;
+    width: 100%;
+}
+
+   .follow-us .heading {
+      text-align: center;
+  }
+.follow-us h2 {
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 500;
+}
+.follow-us .site-btn a {
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #F6921E;
+    border-radius: 100px;
+    padding: 13px 101px;
+    border-radius: 100px !important;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.2s linear;
+    border-radius: 11px;
+    border: none;
+    color: #fff;
+    margin: 41px 0 0px 25px;
+}
+   .follow-us .site-btn a:hover {
+         background-color: #000;
+     color:#fff;
+   }
+
+    .follow-us .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: none;
+      border-radius: .25rem;
+  }
+
+    .follow-us .card-image {
+      position: relative;
+      padding-bottom: 110%;
+  }
+
+    .follow-us .card-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .follow-us .site-btn a:nth-child(1) {
+      padding: 13px 120px;
+  }
+
+  @media(max-width:768px) {
+    .follow-us .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      margin: 20px 0;
+      border: none;
+      border-radius: .25rem;
+  }
+   .the-review {
+    padding-top: 20px !important;
+} 
+        @media (max-width: 786px) {
+        .follow-us h2 {
+            text-transform: uppercase;
+            font-size: 30px !important;
+            font-weight: 500;
+}
+
+        }
+
+
+    
+
+  .the-review .slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 9px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}  
+
+  .the-review {
+    background: #FF8B68 !important;
+    padding-bottom: 73px !important;
+}  
+
+  #shopify-section-template--17203107135660__testimonials_card_YbJQWB .the-review {
+    background: #FF8B68 !important;
+    padding-bottom: 76px !important;
+}  
+
+  .the-review .heading {
+    text-align: center;
+    margin-bottom: 15px;
+}  
+
+  .the-review .border-image {
+    top: 0;
+    width: 100%;
+    height: 66px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(11%);
+    z-index: 1 !important;
+}  
+
+  .slick-dots li button:before {
+    font-family: slick;
+    font-size: 6px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    opacity: 1;
+    content: '•';
+    border-radius: 100%;
+    background-color: #fff;
+    text-align: center;
+    color: unset;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}  
+
+      .the-review .heading h3 {
+        font-size: 26px !important;
+    }  
+  }
+
+  @media(max-width:350px) {
+    .follow-us .site-btn a {
+      font-size: 16px;
+      text-decoration: none;
+      background-color: #FF4C01;
+      border-radius: 100px;
+      padding: 13px 101px;
+      display: inline-block;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.2s linear;
+      border-radius: 11px;
+      border: none;
+      color: #fff !important;
+      margin: 24px 0 0px 0px !important;
+  }
+       .heading {
+          margin-top: 11px;
+          text-align: center;
+      }
+
+    .follow-us {
+      padding: 16px 0 60px !important;
+      position: relative;
+      margin-top: -23px;
+      z-index: 1;
+  }
+  }
+
+    @media(max-width:327px) {
+      .follow-us .site-btn a:nth-child(1) {
+      padding: 13px 84px !important;
+  }
+    }
+
+  
+{% endstyle %}
+
+<div class="follow-us" style="background-color:{{ section.settings.section_background_color }};">
+  {% if section.settings.border_image %}
+    <div class="border-image">
+      <img src="{{ section.settings.border_image | img_url: 'master' }}" alt="">
+    </div>
+  {% endif %}
+  <div class="container">
+    <div class="heading">
+      <div class="main-heading">
+        <h2 style="color:{{ section.settings.heading_text_color }};">{{ section.settings.heading_text }}</h2>
+        <div class="site-btn">
+          <a href="{{ section.settings.tiktok_url }}">{{ section.settings.tiktok_text }}</a>
+          <a href="{{ section.settings.instagram_url }}">{{ section.settings.instagram_text }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for block in section.blocks %}
+        <div class="col-md-4">
+         <a href="{{ block.settings.soacl_link }}">
+           <div class="card">
+            {% if block.settings.card_image %}
+              <div class="card-image">
+                <img
+                  class="card-img"
+                  src="{{ block.settings.card_image | img_url: 'master' }}"
+                  alt="{{ block.settings.card_image_alt }}"
+                >
+              </div>
+            {% endif %}
+            <div class="card-img-overlay">
+              <div class="icon">
+                {% if block.settings.icon_image %}
+                  <img
+                    src="{{ block.settings.icon_image | img_url: '200x' }}"
+                    alt="{{ block.settings.icon_image_alt }}"
+                  >
+                {% endif %}
+              </div>
+            </div>
+          </div>
+         </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Follow Us",
+  "settings": [
+     {
+      "type": "image_picker",
+      "id": "border_image",
+      "label": "border image",
+    },
+     {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+    },
+       {
+      "type": "color",
+      "id": "heading_text_color",
+      "label": "Heading Text Color",
+    },
+     {
+      "type": "text",
+      "id": "tiktok_text",
+      "label": "Tiktok text",
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "Tiktok URL",
+    },
+        {
+      "type": "text",
+      "id": "instagram_text",
+      "label": "Instagram text",
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "url",
+          "id": "card_Url",
+          "label": "Card Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "card_image_alt",
+          "label": "Card Image Alt Text",
+          "default": "Card Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_image_alt",
+          "label": "Icon Image Alt Text",
+          "default": "Icon Image"
+        },
+          {
+          "type": "url",
+          "id": "soacl_link",
+          "label": "Socal Links"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Follow Us",
+      "category": "Social"
+    }
+  ]
+}
+{% endschema %}
 
